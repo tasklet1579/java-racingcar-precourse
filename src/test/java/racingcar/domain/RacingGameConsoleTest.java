@@ -1,11 +1,8 @@
 package racingcar.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -16,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RacingConsoleTest {
+public class RacingGameConsoleTest {
     @DisplayName("자동차_이름을_입력받는다")
     @Test
     void 자동차_이름을_입력받는다() {
@@ -26,7 +23,7 @@ public class RacingConsoleTest {
         expected.addName("jun");
 
         System.setIn(new ByteArrayInputStream("pobi,woni,jun".getBytes(StandardCharsets.UTF_8)));
-        RacingConsole console = new RacingConsole();
+        RacingGameConsole console = new RacingGameConsole();
         RacingCarPart actual = console.readCarNames();
 
         assertEquals(expected.getNames(), actual.getNames());
@@ -39,7 +36,7 @@ public class RacingConsoleTest {
     void 비정상적인_자동차_이름을_입력받는다(String name) {
         assertThatThrownBy(() -> {
             System.setIn(new ByteArrayInputStream(name.getBytes(StandardCharsets.UTF_8)));
-            RacingConsole console = new RacingConsole();
+            RacingGameConsole console = new RacingGameConsole();
             console.readCarNames();
         }).isInstanceOf(NullPointerException.class);
     }
@@ -50,7 +47,7 @@ public class RacingConsoleTest {
         int expected = 5;
 
         System.setIn(new ByteArrayInputStream("5".getBytes(StandardCharsets.UTF_8)));
-        RacingConsole console = new RacingConsole();
+        RacingGameConsole console = new RacingGameConsole();
         int actual = console.readMovingCount();
 
         assertEquals(expected, actual);
@@ -63,7 +60,7 @@ public class RacingConsoleTest {
     void 비정상적인_이동_횟수를_입력받는다(String count) {
         assertThatThrownBy(() -> {
             System.setIn(new ByteArrayInputStream(count.getBytes(StandardCharsets.UTF_8)));
-            RacingConsole console = new RacingConsole();
+            RacingGameConsole console = new RacingGameConsole();
             console.readMovingCount();
         }).isInstanceOfAny(NullPointerException.class, IllegalArgumentException.class, NumberFormatException.class);
     }

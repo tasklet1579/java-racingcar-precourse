@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class RacingConsole {
+public class RacingGameConsole {
     private static final String COMMA = ",";
 
     public RacingCarPart readCarNames() {
