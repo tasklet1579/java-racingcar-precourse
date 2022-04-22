@@ -15,4 +15,8 @@ public class RacingCarPart {
     public List<String> getNames() {
         return names;
     }
+
+    public int size() {
+        return names.size();
+    }
 }
