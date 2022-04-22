@@ -47,12 +47,13 @@ public class RacingGame {
     }
 
     public RacingCarPart readCarNames() {
+        RacingGameOutputView view = new RacingGameOutputView();
         try {
-            RacingGameOutputView view = new RacingGameOutputView();
             view.printConsoleMessage("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
             RacingGameConsole console = new RacingGameConsole();
             return console.readCarNames();
-        } catch (Exception ignored) {
+        } catch (NullPointerException | IllegalArgumentException ignored) {
+            view.printConsoleMessage("[ERROR] " + ignored.getMessage());
         }
         return new RacingCarPart();
     }
@@ -62,12 +63,13 @@ public class RacingGame {
     }
 
     public int readMovingCount() {
+        RacingGameOutputView view = new RacingGameOutputView();
         try {
-            RacingGameOutputView view = new RacingGameOutputView();
             view.printConsoleMessage("시도할 회수는 몇회인가요?");
             RacingGameConsole console = new RacingGameConsole();
             return console.readMovingCount();
-        } catch (Exception ignored) {
+        } catch (NullPointerException | IllegalArgumentException ignored) {
+            view.printConsoleMessage("[ERROR] " + ignored.getMessage());
         }
         return 0;
     }
@@ -100,7 +102,7 @@ public class RacingGame {
         }
 
         RacingGameOutputView view = new RacingGameOutputView();
-        view.printConsoleMessage("최종 우승자: " + joinNames(result.winners()));
+        view.printConsoleMessage("최종 우승자는 " + joinNames(result.winners()) + " 입니다.");
     }
 
     public RacingGameResult measureCarDistanceFromStartLine(RacingCar car, RacingGameResult result) {

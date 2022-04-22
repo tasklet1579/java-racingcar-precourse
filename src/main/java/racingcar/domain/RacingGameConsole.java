@@ -15,9 +15,9 @@ public class RacingGameConsole {
         }
         RacingCarPart part = new RacingCarPart();
         for (String name : extractCarNames(carNames)) {
-            isCarNameFiveCharactersOrLess(name);
-            isCarNameInLowercaseEnglish(name);
-            part.addName(name);
+            isCarNameFiveCharactersOrLess(name.trim());
+            isCarNameInLowercaseEnglish(name.trim());
+            part.addName(name.trim());
         }
         return part;
     }
