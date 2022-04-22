@@ -4,7 +4,6 @@ public class RacingCar {
     private static final String EM_DASH = "-";
     private static final String SPACE = " ";
     private static final String COLON = ":";
-    private static final String NEW_LINE = "\n";
 
     private String name;
     private int distance;
@@ -33,7 +32,11 @@ public class RacingCar {
         for (int idx = 0; idx < distance; idx++) {
             sb.append(EM_DASH);
         }
-        return sb.append(NEW_LINE).toString();
+        return sb.toString();
+    }
+
+    public String name() {
+        return this.name;
     }
 
     public int distance() {
