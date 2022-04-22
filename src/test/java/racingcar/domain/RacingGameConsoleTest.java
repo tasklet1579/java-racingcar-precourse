@@ -32,13 +32,13 @@ public class RacingGameConsoleTest {
     @DisplayName("비정상적인_자동차_이름을_입력받는다")
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = {" "})
+    @ValueSource(strings = {" ", "wo rld", "자동차이름", "!@#"})
     void 비정상적인_자동차_이름을_입력받는다(String name) {
         assertThatThrownBy(() -> {
             System.setIn(new ByteArrayInputStream(name.getBytes(StandardCharsets.UTF_8)));
             RacingGameConsole console = new RacingGameConsole();
             console.readCarNames();
-        }).isInstanceOf(NullPointerException.class);
+        }).isInstanceOfAny(NullPointerException.class, IllegalArgumentException.class);
     }
 
     @DisplayName("이동_횟수를_입력받는다")

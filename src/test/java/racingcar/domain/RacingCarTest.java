@@ -2,10 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.stream.Stream;
 
@@ -18,19 +15,18 @@ public class RacingCarTest {
     void 자동차를_생성한다(String name) {
         assertThatCode(() -> {
             RacingCar car = new RacingCar(name);
-            System.out.println(car.name());
+            System.out.println(car.information());
         }).doesNotThrowAnyException();
     }
 
     @DisplayName("자동차를_생산할_수_없다")
     @ParameterizedTest
-    @NullAndEmptySource
-    @ValueSource(strings = {" hello", "wo rld", "자동차이름", "!@#"})
+    @NullSource
     void 자동차를_생산할_수_없다(String name) {
         assertThatThrownBy(() -> {
             RacingCar car = new RacingCar(name);
-            System.out.println(car.name());
-        }).isInstanceOfAny(IllegalArgumentException.class, NullPointerException.class);
+            System.out.println(car.information());
+        }).isInstanceOfAny(NullPointerException.class);
     }
 
     @DisplayName("자동차를_전진한다")

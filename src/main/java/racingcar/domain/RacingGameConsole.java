@@ -2,8 +2,11 @@ package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.regex.Pattern;
+
 public class RacingGameConsole {
     private static final String COMMA = ",";
+    private static final String RACING_CAR_NAME = "^[a-z]{0,5}$";
 
     public RacingCarPart readCarNames() {
         String carNames = Console.readLine().trim();
@@ -11,7 +14,9 @@ public class RacingGameConsole {
             throw new NullPointerException("자동차 이름이 입력되지 않았습니다.");
         }
         RacingCarPart part = new RacingCarPart();
-        for (String name : extractCarName(carNames)) {
+        for (String name : extractCarNames(carNames)) {
+            isCarNameFiveCharactersOrLess(name);
+            isCarNameInLowercaseEnglish(name);
             part.addName(name);
         }
         return part;
@@ -37,8 +42,20 @@ public class RacingGameConsole {
         return name.isEmpty();
     }
 
-    public String[] extractCarName(String input) {
+    public String[] extractCarNames(String input) {
         return input.split(COMMA);
+    }
+
+    public void isCarNameFiveCharactersOrLess(String name) {
+        if (name.length() < 1 || name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+        }
+    }
+
+    public void isCarNameInLowercaseEnglish(String name) {
+        if (!Pattern.compile(RACING_CAR_NAME).matcher(name).matches()) {
+            throw new IllegalArgumentException("자동차 이름은 영어 소문자만 가능합니다.");
+        }
     }
 
     public int parseInt(String input) {
