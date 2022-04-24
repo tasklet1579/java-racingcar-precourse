@@ -1,12 +1,9 @@
 package racingcar.domain;
 
+import racingcar.constant.Characters;
 import racingcar.constant.ViewMessage;
 
 public class RacingCar {
-    private static final String EM_DASH = "-";
-    private static final String SPACE = " ";
-    private static final String COLON = ":";
-
     private String name;
     private int distance;
 
@@ -30,9 +27,12 @@ public class RacingCar {
 
     public String information() {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.name).append(SPACE).append(COLON).append(SPACE);
+        sb.append(this.name)
+          .append(Characters.SPACE)
+          .append(Characters.COLON)
+          .append(Characters.SPACE);
         for (int idx = 0; idx < distance; idx++) {
-            sb.append(EM_DASH);
+            sb.append(Characters.DASH);
         }
         return sb.toString();
     }
