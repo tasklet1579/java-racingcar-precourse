@@ -1,5 +1,6 @@
 package racingcar.controller;
 
+import racingcar.constant.ViewMessage;
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCarPart;
 import racingcar.domain.RacingGameConsole;
@@ -49,11 +50,11 @@ public class RacingGame {
     public RacingCarPart readCarNames() {
         RacingGameOutputView view = new RacingGameOutputView();
         try {
-            view.printConsoleMessage("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+            view.printConsoleMessage(ViewMessage.ENTER_THE_NAME_OF_THE_CAR_YOU_WANT_TO_RACE);
             RacingGameConsole console = new RacingGameConsole();
             return console.readCarNames();
         } catch (NullPointerException | IllegalArgumentException ignored) {
-            view.printConsoleMessage("[ERROR] " + ignored.getMessage());
+            view.printConsoleMessage(ViewMessage.ERROR_HEADER + ignored.getMessage());
         }
         return new RacingCarPart();
     }
@@ -65,11 +66,11 @@ public class RacingGame {
     public int readMovingCount() {
         RacingGameOutputView view = new RacingGameOutputView();
         try {
-            view.printConsoleMessage("시도할 회수는 몇회인가요?");
+            view.printConsoleMessage(ViewMessage.HOW_MANY_TIMES_IS_THE_GAME_PLAYED);
             RacingGameConsole console = new RacingGameConsole();
             return console.readMovingCount();
         } catch (NullPointerException | IllegalArgumentException ignored) {
-            view.printConsoleMessage("[ERROR] " + ignored.getMessage());
+            view.printConsoleMessage(ViewMessage.ERROR_HEADER + ignored.getMessage());
         }
         return 0;
     }
@@ -83,7 +84,7 @@ public class RacingGame {
 
     public void printRacingGameHeader() {
         RacingGameOutputView view = new RacingGameOutputView();
-        view.printConsoleMessage("실행 결과");
+        view.printConsoleMessage(ViewMessage.GAME_RESULT);
     }
 
     public void printRacingGamers(List<RacingCar> cars) {
@@ -102,7 +103,7 @@ public class RacingGame {
         }
 
         RacingGameOutputView view = new RacingGameOutputView();
-        view.printConsoleMessage("최종 우승자: " + joinNames(result.winners()));
+        view.printConsoleMessage(ViewMessage.GAME_WINNERS + joinNames(result.winners()));
     }
 
     public RacingGameResult measureCarDistanceFromStartLine(RacingCar car, RacingGameResult result) {

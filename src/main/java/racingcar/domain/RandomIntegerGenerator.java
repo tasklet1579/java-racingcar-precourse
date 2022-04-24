@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.constant.ViewMessage;
 import racingcar.dto.RandomIntegers;
 
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ public class RandomIntegerGenerator {
 
     public RandomIntegerGenerator(int inclusiveStart, int inclusiveEnd) {
         if (inclusiveStart > inclusiveEnd) {
-            throw new IllegalArgumentException("종료값이 시작값 보다 작을수 없습니다.");
+            throw new IllegalArgumentException(ViewMessage.END_VALUE_CANNOT_BE_LESS_THAN_START_VALUE);
         }
         this.inclusiveStart = inclusiveStart;
         this.inclusiveEnd = inclusiveEnd;
@@ -24,7 +25,7 @@ public class RandomIntegerGenerator {
 
     public RandomIntegers pickRandomIntegersInRange(int count) {
         if (count == 0) {
-            throw new IllegalArgumentException("한 개 이상의 숫자를 생성해야 합니다.");
+            throw new IllegalArgumentException(ViewMessage.MUST_GENERATE_AT_LEAST_ONE_NUMBER);
         }
         List<Integer> integers = new LinkedList<>();
         for (int idx = 0; idx < count; idx++) {

@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.constant.ViewMessage;
+
 public class RacingCar {
     private static final String EM_DASH = "-";
     private static final String SPACE = " ";
@@ -10,7 +12,7 @@ public class RacingCar {
 
     public RacingCar(String name) {
         if (isNull(name)) {
-            throw new NullPointerException("자동차 이름이 입력되지 않았습니다.");
+            throw new NullPointerException(ViewMessage.NO_CAR_NAME_ENTERED);
         }
         this.name = name;
         this.distance = 0;

@@ -2,6 +2,7 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import racingcar.constant.ViewMessage;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -10,8 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final int MOVING_FORWARD = 4;
     private static final int STOP = 3;
-
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 전진_정지() {
@@ -40,7 +39,7 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(
             () -> {
                 runException("pobi,javaji");
-                assertThat(output()).contains(ERROR_MESSAGE);
+                assertThat(output()).contains(ViewMessage.ERROR_HEADER);
             }
         );
     }
