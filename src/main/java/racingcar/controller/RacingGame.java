@@ -102,7 +102,7 @@ public class RacingGame {
         }
 
         RacingGameOutputView view = new RacingGameOutputView();
-        view.printConsoleMessage("최종 우승자는 " + joinNames(result.winners()) + " 입니다.");
+        view.printConsoleMessage("최종 우승자: " + joinNames(result.winners()));
     }
 
     public RacingGameResult measureCarDistanceFromStartLine(RacingCar car, RacingGameResult result) {
