@@ -78,3 +78,30 @@
 - 5. 게임의 우승자를 발표한다.
   - 출발선으로부터의 거리가 가장 먼 자동차가 우승한다.
   - 게임의 우승자는 한 명 이상이다.
+
+### 7. 게임 기능 주요 메서드
+```
+RacingGame
+    playRacing // 자동차 게임 시작 메서드
+    isCarNamesOk // 자동차 이름이 정상인지 확인하는 메서드
+    isMovingCountOk // 게임 진행 횟수가 정상인지 확인하는 메서드 
+    startRacingCars // 임의의 값을 생성하여 자동차에게 전달하는 메서드
+    printRacingGamers // 자동차의 이름과 이동거리를 출력하는 메서드
+    printRacingGameWinners // 게임 최종 우승자를 출력하는 함수
+  
+RacingCar
+    moveForward // 자동자 전진 메서드
+    
+RacingGameConsole
+    readCarNames // 자동차 이름을 입력받는 메서드
+    readMovingCount // 게임 진행 횟수를 입력받는 횟수
+    isCarNameFiveCharactersOrLess // 자동차 이름이 5자리 이하인지 확인하는 메서드
+    isCarNameInLowercaseEnglish // 자동차 이름이 영어 소문자로 구성되었는지 확인하는 메서드
+    isNegativeInteger // 입력값이 0 이하인지 확인하는 메서드
+  
+RandomIntegerGenerator
+    pickRandomIntegerInRange // 주어진 숫자 사이의 정수를 생성하는 메서드
+  
+RacingGameOutputView
+    printConsoleMessage // 콘솔에 메시지를 출력하는 메서드
+```
