@@ -35,11 +35,11 @@ public class RandomIntegerGenerator {
         return new RandomIntegers(integers);
     }
 
-    public int getInclusiveStart() {
+    private int getInclusiveStart() {
         return this.inclusiveStart;
     }
 
-    public int getInclusiveEnd() {
+    private int getInclusiveEnd() {
         return this.inclusiveEnd;
     }
 }

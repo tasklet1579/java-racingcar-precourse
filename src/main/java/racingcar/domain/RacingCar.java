@@ -15,7 +15,7 @@ public class RacingCar {
         this.distance = 0;
     }
 
-    public boolean isNull(String name) {
+    private boolean isNull(String name) {
         return name == null;
     }
 
