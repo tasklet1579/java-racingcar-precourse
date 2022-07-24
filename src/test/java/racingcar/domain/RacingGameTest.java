@@ -14,14 +14,15 @@ public class RacingGameTest {
 
     @BeforeEach
     void init() {
-        this.game = new RacingGame();
+        game = new RacingGame();
     }
 
-    @DisplayName("자동차_경주_게임_테스트")
+    @DisplayName("자동차 경주 게임 테스트")
     @Test
-    void 자동차_경주_게임_테스트() {
+    void racingGameTest() {
         assertThatCode(() -> {
-            final byte[] buf = String.join("\n", "pobi,woni,jun", "5").getBytes();
+            final byte[] buf = String.join("\n", "pobi,woni,jun", "5")
+                                     .getBytes();
             System.setIn(new ByteArrayInputStream(buf));
             game.playRacing();
         }).doesNotThrowAnyException();

@@ -1,11 +1,8 @@
 package racingcar.controller;
 
 import racingcar.constant.ViewMessage;
-import racingcar.domain.RacingCar;
-import racingcar.domain.RacingCarName;
-import racingcar.domain.RacingCarNames;
-import racingcar.domain.RandomIntegerGenerator;
-import racingcar.dto.RacingGameResult;
+import racingcar.domain.*;
+import racingcar.dto.RacingWinners;
 import racingcar.view.RacingGameInputView;
 import racingcar.view.RacingGameOutputView;
 
@@ -26,7 +23,7 @@ public class RacingGame {
         }
 
         while (isMovingCountOk()) {
-            this.count = readMovingCount();
+            count = readMovingCount();
         }
 
         for (RacingCarName name : names.getNames()) {
@@ -36,13 +33,13 @@ public class RacingGame {
 
         printRacingGameHeader();
 
-        while (this.count > 0) {
-            startRacingCars(this.cars);
-            printRacingGamers(this.cars);
-            this.count--;
+        while (count > 0) {
+            startRacingCars(cars);
+            printRacingGamers(cars);
+            count--;
         }
 
-        printRacingGameWinners(this.cars);
+        printRacingGameWinners(cars);
     }
 
     public boolean isCarNamesOk() {
@@ -98,26 +95,9 @@ public class RacingGame {
     }
 
     public void printRacingGameWinners(List<RacingCar> cars) {
-        List<RacingCar> winners = new LinkedList<>();
-        RacingGameResult result = new RacingGameResult(winners, 0);
-        for (RacingCar car : cars) {
-            result = measureCarDistanceFromStartLine(car, result);
-        }
-
+        RacingWinners winners = new RacingCars(cars).getWinners();
         RacingGameOutputView view = new RacingGameOutputView();
-        view.printConsoleMessage(ViewMessage.GAME_WINNERS + joinNames(result.winners()));
-    }
-
-    public RacingGameResult measureCarDistanceFromStartLine(RacingCar car, RacingGameResult result) {
-        if (car.distance() == result.maxDistance()) {
-            result.add(car);
-        }
-        if (car.distance() > result.maxDistance()) {
-            result.changeMaxDistance(car.distance());
-            result.clear();
-            result.add(car);
-        }
-        return result;
+        view.printConsoleMessage(ViewMessage.GAME_WINNERS + joinNames(winners.getWinners()));
     }
 
     public String joinNames(List<RacingCar> winners) {

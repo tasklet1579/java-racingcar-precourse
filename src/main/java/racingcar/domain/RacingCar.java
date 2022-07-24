@@ -15,6 +15,11 @@ public class RacingCar {
         distance = 0;
     }
 
+    public RacingCar(String name, int distance) {
+        this.name = name;
+        this.distance = distance;
+    }
+
     private boolean isNull(RacingCarName carName) {
         return carName == null;
     }
