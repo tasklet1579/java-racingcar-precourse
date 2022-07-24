@@ -2,7 +2,6 @@ package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import racingcar.constant.ViewMessage;
-import racingcar.dto.RandomIntegers;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -35,11 +34,11 @@ public class RandomIntegerGenerator {
         return new RandomIntegers(integers);
     }
 
-    private int getInclusiveStart() {
-        return this.inclusiveStart;
+    public int getInclusiveStart() {
+        return inclusiveStart;
     }
 
-    private int getInclusiveEnd() {
-        return this.inclusiveEnd;
+    public int getInclusiveEnd() {
+        return inclusiveEnd;
     }
 }

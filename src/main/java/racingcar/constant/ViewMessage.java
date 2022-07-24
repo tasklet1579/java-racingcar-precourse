@@ -17,7 +17,6 @@ public class ViewMessage {
     public static final String END_VALUE_CANNOT_BE_LESS_THAN_START_VALUE = "종료값이 시작값 보다 작을수 없습니다.";
     public static final String MUST_GENERATE_AT_LEAST_ONE_NUMBER = "한 개 이상의 숫자를 생성해야 합니다.";
     public static final String AT_LEAST_ONE_NUMBER_MUST_BE_GENERATED = "한 개 이상의 숫자가 생성되어야 합니다.";
-    public static final String INDEX_IS_NOT_AVAILABLE = "사용할 수 없는 인덱스 입니다.";
 
     private ViewMessage() {
     }
