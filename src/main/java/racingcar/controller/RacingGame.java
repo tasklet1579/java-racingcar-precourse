@@ -2,32 +2,34 @@ package racingcar.controller;
 
 import racingcar.constant.ViewMessage;
 import racingcar.domain.RacingCar;
-import racingcar.domain.RacingCarPart;
-import racingcar.domain.RacingGameConsole;
+import racingcar.domain.RacingCarName;
+import racingcar.domain.RacingCarNames;
 import racingcar.domain.RandomIntegerGenerator;
 import racingcar.dto.RacingGameResult;
+import racingcar.view.RacingGameInputView;
 import racingcar.view.RacingGameOutputView;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class RacingGame {
-    private List<RacingCar> cars = new LinkedList<>();
-    private RacingCarPart part = new RacingCarPart();
+    private final List<RacingCar> cars = new LinkedList<>();
+    private RacingCarNames names = new RacingCarNames();
     private int count = 0;
 
-    public RacingGame() { }
+    public RacingGame() {
+    }
 
     public void playRacing() {
         while (isCarNamesOk()) {
-            this.part = readCarNames();
+            names = readCarNames();
         }
 
         while (isMovingCountOk()) {
             this.count = readMovingCount();
         }
 
-        for (String name : this.part.getNames()) {
+        for (RacingCarName name : names.getNames()) {
             RacingCar car = new RacingCar(name);
             cars.add(car);
         }
@@ -44,19 +46,19 @@ public class RacingGame {
     }
 
     public boolean isCarNamesOk() {
-        return this.part.size() == 0;
+        return names.size() == 0;
     }
 
-    public RacingCarPart readCarNames() {
+    public RacingCarNames readCarNames() {
         RacingGameOutputView view = new RacingGameOutputView();
         try {
             view.printConsoleMessage(ViewMessage.ENTER_THE_NAME_OF_THE_CAR_YOU_WANT_TO_RACE);
-            RacingGameConsole console = new RacingGameConsole();
+            RacingGameInputView console = new RacingGameInputView();
             return console.readCarNames();
         } catch (NullPointerException | IllegalArgumentException ignored) {
             view.printConsoleMessage(ViewMessage.ERROR_HEADER + ignored.getMessage());
         }
-        return new RacingCarPart();
+        return new RacingCarNames();
     }
 
     public boolean isMovingCountOk() {
@@ -67,7 +69,7 @@ public class RacingGame {
         RacingGameOutputView view = new RacingGameOutputView();
         try {
             view.printConsoleMessage(ViewMessage.HOW_MANY_TIMES_IS_THE_GAME_PLAYED);
-            RacingGameConsole console = new RacingGameConsole();
+            RacingGameInputView console = new RacingGameInputView();
             return console.readMovingCount();
         } catch (NullPointerException | IllegalArgumentException ignored) {
             view.printConsoleMessage(ViewMessage.ERROR_HEADER + ignored.getMessage());

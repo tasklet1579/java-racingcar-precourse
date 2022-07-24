@@ -1,25 +1,24 @@
-package racingcar.domain;
+package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.constant.Characters;
 import racingcar.constant.Regex;
 import racingcar.constant.ViewMessage;
+import racingcar.domain.RacingCarNames;
 
 import java.util.regex.Pattern;
 
-public class RacingGameConsole {
-    public RacingCarPart readCarNames() {
+public class RacingGameInputView {
+    public RacingCarNames readCarNames() {
         String carNames = Console.readLine();
         if (isNull(carNames) || isEmpty(carNames)) {
             throw new NullPointerException(ViewMessage.NO_CAR_NAME_ENTERED);
         }
-        RacingCarPart part = new RacingCarPart();
-        for (String name : extractCarNames(carNames.trim())) {
-            isCarNameFiveCharactersOrLess(name.trim());
-            isCarNameInLowercaseEnglish(name.trim());
-            part.addName(name.trim());
+        RacingCarNames names = new RacingCarNames();
+        for (String name : extractCarNames(carNames)) {
+            names.addName(name.trim());
         }
-        return part;
+        return names;
     }
 
     public int readMovingCount() {
@@ -44,18 +43,6 @@ public class RacingGameConsole {
 
     private String[] extractCarNames(String input) {
         return input.split(Characters.COMMA);
-    }
-
-    private void isCarNameFiveCharactersOrLess(String name) {
-        if (name.length() < 1 || name.length() > 5) {
-            throw new IllegalArgumentException(ViewMessage.CAR_NAMES_MUST_BE_FIVE_CHARACTERS_OR_LESS);
-        }
-    }
-
-    private void isCarNameInLowercaseEnglish(String name) {
-        if (!Pattern.compile(Regex.RACING_CAR_NAME).matcher(name).matches()) {
-            throw new IllegalArgumentException(ViewMessage.CAR_NAMES_CAN_ONLY_BE_IN_LOWERCASE_ENGLISH);
-        }
     }
 
     private int parseInt(String input) {

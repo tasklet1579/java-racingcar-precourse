@@ -7,21 +7,21 @@ public class RacingCar {
     private String name;
     private int distance;
 
-    public RacingCar(String name) {
-        if (isNull(name)) {
+    public RacingCar(RacingCarName carName) {
+        if (isNull(carName)) {
             throw new NullPointerException(ViewMessage.NO_CAR_NAME_ENTERED);
         }
-        this.name = name;
-        this.distance = 0;
+        name = carName.getName();
+        distance = 0;
     }
 
-    private boolean isNull(String name) {
+    private boolean isNull(RacingCarName carName) {
         return name == null;
     }
 
     public void moveForward(int condition) {
         if (condition > 3) {
-            this.distance += 1;
+            distance += 1;
         }
     }
 
