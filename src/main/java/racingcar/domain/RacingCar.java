@@ -4,7 +4,7 @@ import racingcar.constant.Characters;
 import racingcar.constant.ViewMessage;
 
 public class RacingCar {
-    private String name;
+    private final String name;
     private int distance;
 
     public RacingCar(RacingCarName carName) {
@@ -16,7 +16,7 @@ public class RacingCar {
     }
 
     private boolean isNull(RacingCarName carName) {
-        return name == null;
+        return carName == null;
     }
 
     public void moveForward(int condition) {
